@@ -1,20 +1,18 @@
 package lab9;
 
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
 public class NumCounter {
     public int countNum(String s) {
         final String[] arr1 = s.split(" ");
         int res = 0;
+        Pattern pattern = Pattern.compile("\\d+");
         for (String i:arr1){
-            char[] arr = i.toCharArray();
-            int num = 0;
-            for (char j:arr){
-                if (j >= 48 && j <= 57){
-                    num++;
-                }
-            }
-            if (num == arr.length){
+            Matcher matcher = pattern.matcher(i);
+            boolean found = matcher.matches();
+            if(found)
                 res++;
-            }
         }
         return res;
     }
